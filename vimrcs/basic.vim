@@ -45,6 +45,9 @@ command W w !sudo tee % > /dev/null
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show line number
+set number
+
 " Set 7 lines to the cursor - when moving vertically using j/k
 " http://vim.wikia.com/wiki/Keep_your_cursor_centered_vertically_on_the_screen"
 set scrolloff=7
@@ -73,7 +76,7 @@ set ruler
 
 " Height of the command bar
 " http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
-set cmdheight=2
+"set cmdheight=2
 
 " A buffer becomes hidden when it is abandoned
 " https://medium.com/usevim/vim-101-set-hidden-f78800142855
