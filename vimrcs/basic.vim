@@ -142,10 +142,10 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-"try
-"    colorscheme desert
-"catch
-"endtry
+try
+    colorscheme wombat256
+catch
+endtry
 
 "set background=dark
 

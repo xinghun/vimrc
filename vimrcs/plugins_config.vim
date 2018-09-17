@@ -12,6 +12,12 @@ call plug#begin('~/.vim/plugged')
 " A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
 
+" cscope map
+Plug 'xinghun/cscope_maps'
+
+" color schemes
+Plug 'flazz/vim-colorschemes'
+
 " Initialize plugin system
 call plug#end()
 
@@ -25,3 +31,4 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ }
       \ }
+
