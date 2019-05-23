@@ -138,9 +138,9 @@ syntax enable
 
 " Enable 256 colors palette in Gnome Terminal
 " http://vim.wikia.com/wiki/256_colors_in_vim
-if $COLORTERM == 'gnome-terminal'
+"if $COLORTERM == 'gnome-terminal'
     set t_Co=256
-endif
+"endif
 
 try
     colorscheme wombat256
