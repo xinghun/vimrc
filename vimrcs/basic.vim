@@ -273,6 +273,10 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 map 0 ^
 
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
+" http://www.skywind.me/blog/archives/1846
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+set ttimeout ttimeoutlen=100
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z

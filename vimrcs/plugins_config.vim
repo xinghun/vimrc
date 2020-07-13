@@ -15,17 +15,32 @@ Plug 'itchyny/lightline.vim'
 " cscope map
 Plug 'xinghun/cscope_maps'
 
+" gtags.vim
+Plug 'xinghun/gtags.vim'
+
 " color schemes
 Plug 'flazz/vim-colorschemes'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 Plug 'Yggdroot/LeaderF'
 
 Plug 'preservim/nerdtree'
 
-" Plug 'ycm-core/YouCompleteMe'
+" Plug 'joshdick/onedark.vim'
 
+Plug 'ryanoasis/vim-devicons'
+
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify'
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
+
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['c', 'cpp', 'lua', 'vim' ]}
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
@@ -42,57 +57,11 @@ colorscheme wombat256
 " => lightline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ }
       \ }
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ale (syntax checker and linter)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Keep the sign gutter open at all times
-" let g:ale_sign_column_always = 1
-
-" Specify what text should be used for signs
-" let g:ale_sign_error = '>>'
-" let g:ale_sign_warning = '--'
-
-" Set this in your vimrc file to disabling highlighting
-" let g:ale_set_highlights = 0
-
-let g:ale_linters = {
-\   'c': ['cppcheck', 'gcc'],
-\   'cpp': ['cppcheck', 'gcc'],
-\}
-
-"let g:ale_pattern_options = {
-"\   'svr_context': {
-"\       'ale_cpp_gcc_options': '-fPIC -D_DEBUG -Wall -g -pipe  -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-function  -Wno-write-strings -Wno-deprecated -fstack-protector -DCODM_VERSION_WEST -I external/tsf4g_base/include -I . -I external/protobuf/include -I build/protocol -I build/protocol'
-"\   },
-"\}
-
-" let g:ale_cpp_clang_options = '-fPIC -D_DEBUG -Wall -g -pipe  -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-function  -Wno-write-strings -Wno-deprecated -fstack-protector -DCODM_VERSION_WEST'
-
-
-let g:ale_cpp_gcc_options = '-fPIC -D_DEBUG -Wall -g -pipe  -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-function  -Wno-write-strings -Wno-deprecated -fstack-protector -DCODM_VERSION_WEST  -I . -I incl -I external/protobuf/include/ -I external/openssl/include/ -I external/tsf4g_base/include -I external/${TSF4G_TCONND_DIR}/include/apps -I external/lua-5.3.5/src/ -I protocol -I external/gtest/include/ -I external/jsoncpp/include/ -I common/jcbase/ -I external/sqlite/include/ -I build/protocol -I external/tsf4g_tconnd_west/include/apps -I clib/incl -I common/normal/include -I common -I common/svr_context -I common/generic_service'
-let g:ale_c_gcc_options = '-fPIC -D_DEBUG -Wall -g -pipe  -Werror -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-function  -Wno-write-strings -Wno-deprecated -fstack-protector -DCODM_VERSION_WEST'
-
-" let g:ale_linters_explicit = 1
-" let g:ale_completion_delay = 500
-" let g:ale_echo_delay = 20
-" let g:ale_lint_delay = 500
-" let g:ale_echo_msg_format = '[%linter%] %code: %%s'
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_lint_on_insert_leave = 1
-" let g:airline#extensions#ale#enabled = 1
-
-" let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-" let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-" let g:ale_c_cppcheck_options = '--error-exitcode=1'
-" let g:ale_cpp_cppcheck_options = '--error-exitcode=1'
-
+let g:lightline.separator = { 'left': "\ue0b0", 'right': "\ue0b2" }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LeaderF (syntax checker and linter)
@@ -101,19 +70,19 @@ let g:ale_c_gcc_options = '-fPIC -D_DEBUG -Wall -g -pipe  -Werror -Wno-unused-va
 let g:Lf_HideHelp = 1
 let g:Lf_UseCache = 0
 let g:Lf_UseVersionControlTool = 0
-let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_IgnoreCurrentBufferName = 0
 " popup mode
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
-"let g:Lf_ShortcutF = "<leader>ff"
+let g:Lf_ShortcutF = "<leader>f"
 "let g:Lf_ShortcutB = '<m-n>'
-noremap <c-n> :LeaderfMru<cr>
-noremap <m-p> :LeaderfFunction!<cr>
-noremap <m-n> :LeaderfBuffer<cr>
-noremap <m-m> :LeaderfTag<cr>
+noremap <leader>r :LeaderfMru<cr>
+noremap <leader>m :LeaderfFunction!<cr>
+"noremap <m-n> :LeaderfBuffer<cr>
+"noremap <m-m> :LeaderfTag<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,6 +93,91 @@ let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
+map <F3> :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'ycm-core/YouCompleteMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => YouCompleteMe
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+
+
+"let g:ycm_auto_trigger = 1
+
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = '/data/home/wallenwang/toolchains/llvm-10.0.0/bin/clangd'
+
+"let g:ycm_always_populate_location_list = 1
+
+" When set, this option turns on YCM's diagnostic display features.
+let g:ycm_show_diagnostics_ui = 0
+
+
+let g:ycm_auto_hover = ''
+nmap <leader>d <plug>(YCMHover)
+
+noremap gd :YcmCompleter GoToDefinition<cr>
+noremap gf :YcmCompleter GoToDeclaration<cr>
+noremap gr :YcmCompleter GoToReferences<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => gtags.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-devicons
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set encoding=utf8
+set guifont=Sauce\ Code\ Pro:h12
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-signify
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" default updatetime 4000ms is not good for async update
+"set updatetime=100
+"let g:signify_sign_add               = '+'
+"let g:signify_sign_delete            = '_'
+"let g:signify_sign_delete_first_line = '‾'
+"let g:signify_sign_change            = '!'
+highlight SignifySignAdd    ctermfg=green  guifg=#00ff00 cterm=NONE gui=NONE
+highlight SignifySignDelete ctermfg=red    guifg=#ff0000 cterm=NONE gui=NONE
+highlight SignifySignChange ctermfg=yellow guifg=#ffff00 cterm=NONE gui=NONE
 
