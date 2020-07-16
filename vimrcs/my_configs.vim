@@ -1,3 +1,6 @@
+" colorscheme molokai
+colorscheme wombat256
+
 " for cscope color
 hi ModeMsg ctermfg=Green
 

@@ -9,6 +9,9 @@ endif
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
+" color schemes
+Plug 'flazz/vim-colorschemes'
+
 " A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
 
@@ -18,39 +21,26 @@ Plug 'xinghun/cscope_maps'
 " gtags.vim
 Plug 'xinghun/gtags.vim'
 
-" color schemes
-Plug 'flazz/vim-colorschemes'
-
-" Plug 'dense-analysis/ale'
-
 Plug 'Yggdroot/LeaderF'
 
 Plug 'preservim/nerdtree'
 
-" Plug 'joshdick/onedark.vim'
-
 Plug 'ryanoasis/vim-devicons'
 
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'
-else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-endif
+"if has('nvim') || has('patch-8.0.902')
+"  Plug 'mhinz/vim-signify'
+"else
+"  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+"endif
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['c', 'cpp', 'lua', 'vim' ]}
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdcommenter'
+
+Plug 'dense-analysis/ale'
 
 " Initialize plugin system
 call plug#end()
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim colorschemes
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme wombat256
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,7 +49,8 @@ colorscheme wombat256
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-      \ }
+      \ },
+      \ 'colorscheme': 'wombat'
       \ }
 let g:lightline.separator = { 'left': "\ue0b0", 'right': "\ue0b2" }
 
@@ -92,7 +83,6 @@ noremap <leader>m :LeaderfFunction!<cr>
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
-map <leader>nn :NERDTreeToggle<cr>
 map <F3> :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
@@ -137,7 +127,6 @@ filetype plugin indent on    " required
 " Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
 
-
 "let g:ycm_auto_trigger = 1
 
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
@@ -148,17 +137,12 @@ let g:ycm_clangd_binary_path = '/data/home/wallenwang/toolchains/llvm-10.0.0/bin
 " When set, this option turns on YCM's diagnostic display features.
 let g:ycm_show_diagnostics_ui = 0
 
-
 let g:ycm_auto_hover = ''
 nmap <leader>d <plug>(YCMHover)
 
 noremap gd :YcmCompleter GoToDefinition<cr>
 noremap gf :YcmCompleter GoToDeclaration<cr>
 noremap gr :YcmCompleter GoToReferences<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => gtags.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,7 +161,33 @@ set guifont=Sauce\ Code\ Pro:h12
 "let g:signify_sign_delete            = '_'
 "let g:signify_sign_delete_first_line = '‾'
 "let g:signify_sign_change            = '!'
-highlight SignifySignAdd    ctermfg=green  guifg=#00ff00 cterm=NONE gui=NONE
-highlight SignifySignDelete ctermfg=red    guifg=#ff0000 cterm=NONE gui=NONE
-highlight SignifySignChange ctermfg=yellow guifg=#ffff00 cterm=NONE gui=NONE
+"highlight SignifySignAdd    ctermfg=green  guifg=#00ff00 cterm=NONE gui=NONE
+"highlight SignifySignDelete ctermfg=red    guifg=#ff0000 cterm=NONE gui=NONE
+"highlight SignifySignChange ctermfg=yellow guifg=#ffff00 cterm=NONE gui=NONE
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERD Commenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Comment out the current line or text selected in visual mode.
+" [count]<leader>cc |NERDCommenterComment|
+
+" Same as cc but forces nesting.
+" [count]<leader>cn |NERDCommenterNested|
+
+" Toggles the comment state of the selected line(s). If the topmost selected line is commented, all selected lines are uncommented and vice versa.
+" [count]<leader>c<space> |NERDCommenterToggle|
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
