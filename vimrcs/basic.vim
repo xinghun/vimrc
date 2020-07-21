@@ -54,8 +54,8 @@ set scrolloff=7
 
 " Avoid garbled characters in Chinese language windows OS
 " http://vim.wikia.com/wiki/Understanding_VIMRUNTIME
-let $LANG='en' 
-set langmenu=en
+"let $LANG='en' 
+"set langmenu=en
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
