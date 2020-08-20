@@ -20,9 +20,9 @@ autocmd QuickFixCmdPost    l* nested lwindow
 
 " set vim-signify color after colorscheme
 highlight SignColumn        ctermfg=NONE   ctermbg=0 guibg=NONE gui=NONE
-highlight SignifySignAdd    ctermfg=42     ctermbg=0 guifg=#00cc7f cterm=NONE gui=NONE
-highlight SignifySignDelete ctermfg=234    ctermbg=0 guifg=#8b0000 cterm=NONE gui=NONE
-highlight SignifySignChange ctermfg=220    ctermbg=0 guifg=#ffd700 cterm=NONE gui=NONE
+"highlight SignifySignAdd    ctermfg=42     ctermbg=0 guifg=#00cc7f cterm=NONE gui=NONE
+"highlight SignifySignDelete ctermfg=234    ctermbg=0 guifg=#8b0000 cterm=NONE gui=NONE
+"highlight SignifySignChange ctermfg=220    ctermbg=0 guifg=#ffd700 cterm=NONE gui=NONE
 
 
 set cursorline
@@ -31,6 +31,13 @@ set cursorline
 " note the significant whitespace after the '\' character
 set fillchars+=vert:\ 
 
+if has('python')
+    map <C-I> :pyf /data/home/wallenwang/toolchains/llvm-10.0.0/share/clang/clang-format.py<cr>
+    imap <C-I> <c-o>:pyf /data/home/wallenwang/toolchains/llvm-10.0.0/share/clang/clang-format.py<cr>
+elseif has('python3')
+    map <C-I> :py3f /data/home/wallenwang/toolchains/llvm-10.0.0/share/clang/clang-format.py<cr>
+    imap <C-I> <c-o>:py3f /data/home/wallenwang/toolchains/llvm-10.0.0/share/clang/clang-format.py<cr>
+endif
 
 "Show the Subversion 'blame' annotation for the current file, in a narrow
 "  window to the left of it.
@@ -51,7 +58,7 @@ function s:svnBlame()
    let line = line(".")
    setlocal nowrap
    " create a new window at the left-hand side
-   aboveleft 19vnew
+   aboveleft 35vnew
    " blame
    %!svn blame -v "#"
    setlocal nomodified readonly buftype=nofile nowrap winwidth=1
@@ -76,4 +83,9 @@ function s:svnLog()
 endfunction
 map sl :call <SID>svnLog()<CR>
 command Log call s:svnLog()
+
+" check highlight group under cursor
+map <F6> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 

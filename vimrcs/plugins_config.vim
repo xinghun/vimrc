@@ -29,9 +29,8 @@ else
   Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
 endif
 
-Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'jeaye/color_coded'
-"Plug 'bfrg/vim-cpp-modern'
+"Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Comment functions so powerful—no comment necessary.
 Plug 'preservim/nerdcommenter'
@@ -54,7 +53,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \ },
-      \ 'colorscheme': 'default'
+      \ 'colorscheme': 'wombat'
       \ }
 let g:lightline.separator = { 'left': "\ue0b0", 'right': "\ue0b2" }
 
@@ -102,75 +101,17 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " default updatetime 4000ms is not good for async update
 "set updatetime=100
-let g:signify_sign_add               = '洛'
-let g:signify_sign_delete            = '﫧'
-let g:signify_sign_delete_first_line = ''
-let g:signify_sign_change            = ''
-
+"let g:signify_sign_add               = '洛'
+"let g:signify_sign_delete_first_line = ''
+"let g:signify_sign_delete            = '﫧'
+"let g:signify_sign_change            = ''
+let g:signify_sign_show_text = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERD Commenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-lsp
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Register ccls C++ lanuage server.
-"if executable('ccls')
-"   au User lsp_setup call lsp#register_server({
-"      \ 'name': 'ccls',
-"      \ 'cmd': {server_info->['ccls']},
-"      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-"      \ 'initialization_options': {'cache': {'directory': '/tmp/ccls/cache' }},
-"      \ 'whitelist': ['c', 'cpp', 'cc'],
-"      \ 'semantic_highlight': {
-"      \   'entity.name.function.cpp': 'ErrorMsg',
-"      \   'entity.name.function.method.cpp': 'ErrorMsg',
-"      \   'entity.name.type.class.cpp': 'ErrorMsg',
-"      \ }
-"      \ })
-"endif
-
-"if executable('clangd')
-"   au User lsp_setup call lsp#register_server({
-"      \ 'name': 'clangd',
-"      \ 'cmd': {server_info->['clangd']},
-"      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-"      \ 'whitelist': ['c', 'cpp', 'cc'],
-"      \ 'semantic_highlight': {
-"      \   'entity.name.function.cpp': 'Function',
-"      \   'entity.name.function.method.cpp': 'Function',
-"      \   'entity.name.function.method.static.cpp': 'Function',
-"      \   'entity.name.namespace.cpp': 'Label',
-"      \   'entity.name.type.class.cpp': 'Label',
-"      \   'entity.name.type.enum.cpp': 'Label',
-"      \   'variable.other.cpp': 'rubySymbol',
-"      \   'variable.other.enummember.cpp': 'rubySymbol',
-"      \   'variable.other.field.cpp': 'rubySymbol',
-"      \   'variable.other.field.static.cpp': 'rubySymbol',
-"      \   'variable.other.local.cpp': 'rubySymbol',
-"      \   'variable.parameter.cpp': 'rubySymbol',
-"      \ }
-"      \ })
-"endif
-
-
-
-" disable diagnostics support
-"let g:lsp_diagnostics_enabled = 0
-"let g:lsp_highlight_references_enabled = 1
-
-" enable semantic highlighting
-"let g:lsp_semantic_enabled = 1
-
-" Key bindings for vim-lsp.
-"nmap <silent> md :LspDefinition<cr>
-"nmap <silent> mr :LspReferences<cr>
-"nmap <silent> ma :LspWorkspaceSymbol<cr>
-"nmap <silent> ml :LspDocumentSymbol<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,8 +192,14 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
+" bases
+nn <silent> gb :call CocLocations('ccls','$ccls/inheritance')<cr>
+" derived
+nn <silent> gB :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true})<cr>
 
-"let g:cpp_class_scope_highlight = 1
-"let g:cpp_class_decl_highlight = 1
-"let g:cpp_member_variable_highlight = 1
+" caller
+nn <silent> gc :call CocLocations('ccls','$ccls/call')<cr>
+" callee
+nn <silent> gC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
 
+let g:lsp_cxx_hl_use_text_props = 0
