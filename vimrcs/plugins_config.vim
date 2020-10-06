@@ -6,26 +6,20 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-" Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
-" A light and configurable statusline/tabline plugin for Vim
 Plug 'itchyny/lightline.vim'
-
 Plug 'xinghun/vim-cscope'
-
 Plug 'xinghun/vim-gtags'
-
 Plug 'xinghun/vim-svn'
-
 Plug 'xinghun/vim-mymrkn256'
-
-" An efficient fuzzy finder that helps to locate files, buffers, mrus, gtags, etc.
 Plug 'Yggdroot/LeaderF'
-
 Plug 'preservim/nerdtree'
-
 Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/nerdcommenter'
+Plug 'flazz/vim-colorschemes'
+"Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
@@ -33,21 +27,11 @@ else
   Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
 endif
 
-"Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'jackguo380/vim-lsp-cxx-highlight'
-
-" Comment functions so powerful—no comment necessary.
-Plug 'preservim/nerdcommenter'
-
-" one stop shop for vim colorschemes
-Plug 'flazz/vim-colorschemes'
-
 " user custom plugin
 if !empty(glob("$HOME/.vim_runtime/vimrcs/my_plugins.vim"))
     source $HOME/.vim_runtime/vimrcs/my_plugins.vim
 endif
 
-" Initialize plugin system
 call plug#end()
 
 
@@ -207,4 +191,3 @@ nn <silent> gc :call CocLocations('ccls','$ccls/call')<cr>
 " callee
 nn <silent> gC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
 
-let g:lsp_cxx_hl_use_text_props = 0
