@@ -16,6 +16,8 @@ Plug 'xinghun/cscope_maps'
 
 Plug 'xinghun/gtags.vim'
 
+Plug 'xinghun/vim-svn'
+
 " An efficient fuzzy finder that helps to locate files, buffers, mrus, gtags, etc.
 Plug 'Yggdroot/LeaderF'
 
