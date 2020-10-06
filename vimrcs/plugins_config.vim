@@ -73,14 +73,12 @@ noremap <leader>m :LeaderfFunction!<cr>
 "noremap <m-n> :LeaderfBuffer<cr>
 "noremap <m-m> :LeaderfTag<cr>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:NERDTreeWinPos = "right"
-let NERDTreeShowHidden=0
+let NERDTreeShowHidden = 0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize = 35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
@@ -88,12 +86,6 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-signify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" default updatetime 4000ms is not good for async update
-"set updatetime=100
-"let g:signify_sign_add               = '洛'
-"let g:signify_sign_delete_first_line = ''
-"let g:signify_sign_delete            = '﫧'
-"let g:signify_sign_change            = ''
 let g:signify_sign_show_text = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -101,7 +93,6 @@ let g:signify_sign_show_text = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => coc.nvim
