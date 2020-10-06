@@ -42,7 +42,9 @@ Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'xinghun/mymrkn256'
 
-"Plug 'prabirshrestha/vim-lsp'
+if !empty(glob("$HOME/.vim_runtime/vimrcs/my_plugins.vim"))
+    source $HOME/.vim_runtime/vimrcs/my_plugins.vim
+endif
 
 " Initialize plugin system
 call plug#end()
