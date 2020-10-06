@@ -18,6 +18,8 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdcommenter'
 Plug 'flazz/vim-colorschemes'
+Plug 'neoclide/coc.nvim', {'branch': 'remotes/origin/release'}
+Plug 'xinghun/vim-tccls'
 "Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'jackguo380/vim-lsp-cxx-highlight'
 
