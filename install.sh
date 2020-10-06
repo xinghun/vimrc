@@ -17,5 +17,5 @@ endtry' > ~/.vimrc
 echo "Installed the Ultimate Vim configuration successfully! Enjoy :-)"
 echo " - The original .vimrc has been backed up to ~/.vimrc.$now.bak"
 echo " - Put your custom configuration in ~/.vim_runtime/vimrcs/my_configs.vim"
-echo " - Put your custom plugin in ~/.vim_runtime/my_plugins"
+echo " - Put your custom plugin in ~/.vim_runtime/vimrcs/my_plugins.vim. e.g., Plug 'junegunn/vim-easy-align'"
 
