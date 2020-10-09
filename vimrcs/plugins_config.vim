@@ -13,13 +13,13 @@ Plug 'xinghun/vim-cscope'
 Plug 'xinghun/vim-gtags'
 Plug 'xinghun/vim-svn'
 Plug 'xinghun/vim-mymrkn256'
-Plug 'Yggdroot/LeaderF'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdcommenter'
 Plug 'flazz/vim-colorschemes'
 Plug 'neoclide/coc.nvim', {'branch': 'remotes/origin/release'}
 Plug 'xinghun/vim-tccls'
+"Plug 'ryanoasis/vim-devicons'
 "Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'jackguo380/vim-lsp-cxx-highlight'
 
@@ -60,8 +60,9 @@ let g:Lf_IgnoreCurrentBufferName = 0
 " popup mode
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+"let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 "let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+let g:Lf_ShowDevIcons = 0 
 
 let g:Lf_WildIgnore = {
      \ 'dir': ['.svn', '.git', '.hg', '.vscode', '.clangd'],
@@ -88,7 +89,7 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-signify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:signify_sign_show_text = 0
+"let g:signify_sign_show_text = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERD Commenter
