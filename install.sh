@@ -14,6 +14,8 @@ source ~/.vim_runtime/vimrcs/my_configs.vim
 catch
 endtry' > ~/.vimrc
 
+vim +PlugInstall +qall
+
 echo "Installed the Ultimate Vim configuration successfully! Enjoy :-)"
 echo " - The original .vimrc has been backed up to ~/.vimrc.$now.bak"
 echo " - Put your custom configuration in ~/.vim_runtime/vimrcs/my_configs.vim"
