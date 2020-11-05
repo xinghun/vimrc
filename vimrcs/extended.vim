@@ -4,7 +4,10 @@
 
 " Colorscheme
 set background=dark
-colorscheme mymrkn256
+try
+    colorscheme mymrkn256
+catch
+endtry
 
 set cursorline
 
