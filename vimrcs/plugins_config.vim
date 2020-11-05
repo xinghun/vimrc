@@ -19,6 +19,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'flazz/vim-colorschemes'
 Plug 'neoclide/coc.nvim', {'branch': 'remotes/origin/release'}
 Plug 'xinghun/vim-tcpp'
+Plug 'vim-scripts/a.vim'
 "Plug 'ryanoasis/vim-devicons'
 "Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -185,3 +186,10 @@ nn <silent> gc :call CocLocations('ccls','$ccls/call')<cr>
 " callee
 nn <silent> gC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => a.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>a :A<cr>
+nmap <leader>as :AS<cr>
+nmap <leader>av :AV<cr>
+nmap <leader>at :AT<cr>
