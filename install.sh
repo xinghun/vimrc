@@ -3,7 +3,8 @@ set -e
 
 now=$(date +"%Y%m%d%H%M%S")
 
-test -f ~/.vimrc && cp ~/.vimrc ~/.vimrc.$now.bak
+mkdir ~/vim.bak.$now
+mv ~/.vim ~/.vimrc ~/vim.bak.$now
 cd ~/.vim_runtime
 
 echo '"set runtimepath+=~/.vim_runtime
