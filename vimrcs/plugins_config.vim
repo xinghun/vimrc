@@ -18,11 +18,7 @@ Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'flazz/vim-colorschemes'
 Plug 'neoclide/coc.nvim', {'branch': 'remotes/origin/release'}
-Plug 'xinghun/vim-tcpp'
 Plug 'vim-scripts/a.vim'
-"Plug 'ryanoasis/vim-devicons'
-"Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
