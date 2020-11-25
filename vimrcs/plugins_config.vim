@@ -17,7 +17,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'flazz/vim-colorschemes'
-Plug 'neoclide/coc.nvim', {'branch': 'remotes/origin/release'}
+Plug 'neoclide/coc.nvim'
 Plug 'vim-scripts/a.vim'
 
 if has('nvim') || has('patch-8.0.902')
@@ -39,10 +39,14 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'currentfunction', 'readonly', 'absolutepath', 'modified' ] ],
       \ },
-      \ 'colorscheme': 'wombat'
-      \ }
+	  \ 'component_function': {
+	  \   'cocstatus': 'coc#status',
+	  \   'currentfunction': 'CocCurrentFunction'
+	  \ },
+	  \ 'colorscheme': 'wombat'
+	  \ }
 let g:lightline.separator = { 'left': "\ue0b0", 'right': "\ue0b2" }
 
 
