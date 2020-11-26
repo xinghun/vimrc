@@ -39,16 +39,20 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'currentfunction', 'readonly', 'absolutepath', 'modified' ] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'readonly', 'absolutepath', 'modified' ] ],
       \ },
 	  \ 'component_function': {
 	  \   'cocstatus': 'coc#status',
-	  \   'currentfunction': 'CocCurrentFunction'
 	  \ },
 	  \ 'colorscheme': 'wombat'
 	  \ }
 let g:lightline.separator = { 'left': "\ue0b0", 'right': "\ue0b2" }
 
+" -- INSERT -- is unnecessary anymore
+set noshowmode
+
+" Use auocmd to force lightline update.
+autocmd User CocStatusChange,CocDiagnosticChange redrawstatus 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LeaderF
